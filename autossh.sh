@@ -1,24 +1,28 @@
 #!/bin/bash
 # configure autossh tunnel
+bold=$(tput bold) #for formating (make text bold)
+normal=$(tput sgr0)
 
-sudo useradd -m -s /bin/false autossh
-sudo su -s /bin/bash autossh
-ssh-keygen
-echo "Copy the public key. You need it later for the server side"
-cat /home/autossh/.ssh/id_rsa.pub
-su pi
+egrep -i "autossh" /etc/passwd;
+if [ $? -eq 0 ]; then
+   echo "User autossh already exists"
+else
+  sudo useradd -m -s /bin/false autossh
+fi
+
+sudo su -c "ssh-keygen -t rsa -N \"\" -f /home/autossh/.ssh/id_rsa" -s /bin/sh autossh
+
 sudo apt-get update
 sudo apt-get install autossh
 mkdir /home/pi/rexometer
 
-echo "Please enter a unique port number (for example 22055)"
+echo "${bold}Please enter a unique port number (for example 22055)${normal}"
 read portnumber
-create_file /home/pi/rexometer/tunnel.sh
+printf "#!/bin/bash\nsudo su -s /bin/sh autossh -c '/usr/bin/autossh -p22022 -fNC -M 20000 -o \"ServerAliveInterval 30\" -o \"ServerAliveCountMax 3\" -R $portnumber:localhost:22  autossh@rexometer.com'" > /home/pi/rexometer/tunnel.sh
 sudo chmod +x /home/pi/rexometer/tunnel.sh
-echo "#!/bin/bash" > /home/pi/rexometer/tunnel.sh
-echo "sudo su -s /bin/sh autossh -c '/usr/bin/autossh -p22022 -fNC -M 20000 -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -R $portnumber:localhost:22  autossh@rexometer.com'" > /home/pi/rexometer/tunnel.sh
 
 echo "Ok, the client is ready to open the tunnel"
-echo "Now log into your server and prompt this command:  sudo su -s /bin/bash autossh"
-echo "and add the clients public key at the end of this file: nano /home/autossh/.ssh/authorized_keys"
-echo "You can test if the Tunnel works by logging into your server and execute 'ssh -p$portnumber pi@localhost'"
+echo "${bold}Now log into your server and prompt this command:${normal}"
+SSHKEY=$( sudo su -c "cat /home/autossh/.ssh/id_rsa.pub" -s /bin/sh autossh )
+printf "echo %s >> /home/autossh/.ssh/authorized_keys\n" "$SSHKEY"
+echo "${bold}You can test if the Tunnel works by logging into your server and execute 'ssh -p$portnumber pi@localhost'${normal}"

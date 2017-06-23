@@ -25,4 +25,4 @@ echo "Ok, the client is ready to open the tunnel"
 echo "${bold}Now log into your server and prompt this command:${normal}"
 SSHKEY=$( sudo su -c "cat /home/autossh/.ssh/id_rsa.pub" -s /bin/sh autossh )
 printf "echo %s >> /home/autossh/.ssh/authorized_keys\n" "$SSHKEY"
-echo "${bold}You can test if the Tunnel works by logging into your server and execute 'ssh -p$portnumber pi@localhost'${normal}"
+echo "${bold}You can test if the Tunnel works by logging into your server and execute 'ssh -p $portnumber pi@localhost'${normal}"

@@ -23,7 +23,7 @@ sudo chmod +x /home/pi/rexometer/tunnel.sh
 
 echo "Add SSH-tunnel autostart to rc.local"
 # see for more info to command: https://stackoverflow.com/a/17612421
-sed -i -e '$i \sh /home/pi/rexometer/tunnel.sh\n' /etc/rc.local
+sudo sed -i -e '$i \sh /home/pi/rexometer/tunnel.sh\n' /etc/rc.local
 
 echo "Ok, the client is ready to open the tunnel"
 echo "${bold}Now log into your server and prompt this command:${normal}"

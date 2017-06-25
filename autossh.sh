@@ -21,6 +21,10 @@ read portnumber
 printf "#!/bin/bash\nsudo su -s /bin/sh autossh -c '/usr/bin/autossh -p22022 -fNC -M 20000 -o \"ServerAliveInterval 30\" -o \"ServerAliveCountMax 3\" -R $portnumber:localhost:22  autossh@rexometer.com'" > /home/pi/rexometer/tunnel.sh
 sudo chmod +x /home/pi/rexometer/tunnel.sh
 
+echo "Add SSH-tunnel autostart to rc.local"
+# see for more info to command: https://stackoverflow.com/a/17612421
+sed -i -e '$i \sh /home/pi/rexometer/tunnel.sh\n' /etc/rc.local
+
 echo "Ok, the client is ready to open the tunnel"
 echo "${bold}Now log into your server and prompt this command:${normal}"
 SSHKEY=$( sudo su -c "cat /home/autossh/.ssh/id_rsa.pub" -s /bin/sh autossh )

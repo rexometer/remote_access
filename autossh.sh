@@ -30,7 +30,7 @@ sudo su -c "echo '|1|TA3MVV+s+8A8dmv7jmaKnDiMiUA=|MzqiaG6HPjpW+84t3s7d3gxBLl0= e
 sudo su -c "echo '|1|gOCtxDDTrubol5O8EjonyxKzZbQ=|rNxdyaXxsa3Ga5dtgszDd4+VB3s= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNxwbUAwIR1mjfEzA6GX9FelpUrS1e2b+omwy4NXavQYvx7Fi8L8P6KC4R607lT7rlLMOaymRAOSXYyPyOyNl9Q=' >> /home/autossh/.ssh/known_hosts" -s /bin/bash autossh
 
 echo "Ok, the client is ready to open the tunnel"
-echo "${bold}Now log into your server and prompt this command:${normal}"
+echo "${bold}Now log into your server, switch to root and prompt this command:${normal}"
 SSHKEY=$( sudo su -c "cat /home/autossh/.ssh/id_rsa.pub" -s /bin/sh autossh )
 printf "echo %s_%s >> /home/autossh/.ssh/authorized_keys\n" "$SSHKEY" "$portnumber"
-echo "${bold}Now reboot your pi. You can test if the Tunnel works by logging into your server and execute 'ssh -p $portnumber pi@localhost'${normal}"
+echo "${bold}After that reboot your pi. You can test if the tunnel works by logging into your server and execute 'ssh -p $portnumber pi@localhost'${normal}"

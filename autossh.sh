@@ -34,3 +34,14 @@ echo "${bold}Now log into your server, switch to root and prompt this command:${
 SSHKEY=$( sudo su -c "cat /home/autossh/.ssh/id_rsa.pub" -s /bin/sh autossh )
 printf "echo %s_%s >> /home/autossh/.ssh/authorized_keys\n" "$SSHKEY" "$portnumber"
 echo "${bold}After that reboot your pi. You can test if the tunnel works by logging into your server and execute 'ssh -p $portnumber pi@localhost'${normal}"
+
+#ask if pi should be rebooted now
+read -p "Reboot pi now (y/n)? " answer
+case ${answer:0:1} in
+    y|Y )
+        sudo reboot
+    ;;
+    * )
+        echo No
+    ;;
+esac

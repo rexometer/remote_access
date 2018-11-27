@@ -18,7 +18,7 @@ mkdir /home/pi/rexometer
 
 echo "${bold}Please enter a unique port number (for example 22055)${normal}"
 read portnumber
-printf "#!/bin/bash\nsudo su -s /bin/sh autossh -c '/usr/bin/autossh -p22022 -fNC -M 0 -o \"ServerAliveInterval 30\" -o \"ServerAliveCountMax 3\" -R $portnumber:localhost:22  autossh@rexometer.com'" > /home/pi/rexometer/tunnel.sh
+printf "#!/bin/bash\nsudo su -s /bin/sh autossh -c '/usr/bin/autossh -p22022 -fNC -M 0 -o \"ServerAliveInterval 30\" -o \"ServerAliveCountMax 3\" -R $portnumber:localhost:22  autossh@regenerix.de'" > /home/pi/rexometer/tunnel.sh
 sudo chmod +x /home/pi/rexometer/tunnel.sh
 
 echo "Add SSH-tunnel autostart to rc.local"

@@ -26,8 +26,8 @@ echo "Add SSH-tunnel autostart to rc.local"
 sudo sed -i -e '$i \sh /home/pi/rexometer/tunnel.sh\n' /etc/rc.local
 
 #add hash of server pub key to known_hosts
-sudo su -c "echo '|1|TA3MVV+s+8A8dmv7jmaKnDiMiUA=|MzqiaG6HPjpW+84t3s7d3gxBLl0= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNxwbUAwIR1mjfEzA6GX9FelpUrS1e2b+omwy4NXavQYvx7Fi8L8P6KC4R607lT7rlLMOaymRAOSXYyPyOyNl9Q=' >> /home/autossh/.ssh/known_hosts" -s /bin/bash autossh
-sudo su -c "echo '|1|gOCtxDDTrubol5O8EjonyxKzZbQ=|rNxdyaXxsa3Ga5dtgszDd4+VB3s= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNxwbUAwIR1mjfEzA6GX9FelpUrS1e2b+omwy4NXavQYvx7Fi8L8P6KC4R607lT7rlLMOaymRAOSXYyPyOyNl9Q=' >> /home/autossh/.ssh/known_hosts" -s /bin/bash autossh
+sudo su -c "echo '|1|9bvJZo7cU9HcUpvfFXADgqJ1v00=|+S+Gl3JAcUmFmWD7KDoyJJMDJEE= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKYY4LQkXu9rZRj1NCs8/Ss0PTfAq0vfYYvkZTr60bwl6NjRTFrY6/dx27Pz/72uM5W622GPvVCZcMwJvUuCeIg=' >> /home/autossh/.ssh/known_hosts" -s /bin/bash autossh
+sudo su -c "echo '|1|D5Lrr0uNAUAvw2TSwc1ivwXBNmI=|QvADAR85pGO8AJ5f/F6BFaVfZNY= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKYY4LQkXu9rZRj1NCs8/Ss0PTfAq0vfYYvkZTr60bwl6NjRTFrY6/dx27Pz/72uM5W622GPvVCZcMwJvUuCeIg=' >> /home/autossh/.ssh/known_hosts" -s /bin/bash autossh
 
 echo "Ok, the client is ready to open the tunnel"
 echo "${bold}Now log into your server, switch to root and prompt this command:${normal}"
